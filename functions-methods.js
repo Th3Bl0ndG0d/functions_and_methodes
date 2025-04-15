@@ -8,8 +8,17 @@
 // getEmailDomain("n.eeken@novi-education.nl") geeft novi-education.nl
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
+// function getEmailDomain(email) {
+//     return email.split('@')[1]; // Gebruik split
+// }
 
+//Nu naar arrow herschreven:
+const getEmailDomain = email => email.split('@')[1];
 
+// Testen
+console.log(getEmailDomain("n.eeken@novi-education.nl"));
+console.log(getEmailDomain("t.mellink@novi.nl"));
+console.log(getEmailDomain("a.wiersma@outlook.com"));
 
 
 /* Opdracht  2 */
@@ -19,8 +28,28 @@
 // typeOfEmail("t.mellink@novi.nl") geeft geeft "Medewerker"
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
+// function typeOfEmail(email) {
+//     switch (getEmailDomain(email)) {
+//         case "novi-education.nl":
+//             return "Student";
+//         case "novi.nl":
+//             return "Medewerker";
+//         default:
+//             return "Extern";
+//     }
+// }
+//Ook weer als arrow versie
+const typeOfEmail = email => {
+    const domain = getEmailDomain(email);
+    return domain === "novi-education.nl" ? "Student" :
+        domain === "novi.nl" ? "Medewerker" : "Extern";
+};
 
 
+console.log(typeOfEmail("n.eeken@novi-education.nl"));
+console.log(typeOfEmail("t.mellink@novi.nl"));
+console.log(typeOfEmail("novi.nlaapjesk@outlook.com"));
+console.log(typeOfEmail("a.wiersma@outlook.com"));
 
 /* Opdracht  3 */
 // Schrijf een functie genaamd checkEmailValidity, die een emailadres verwacht en checkt of het emailadres valide is. De functie returned true of false, afhankelijk van de uitkomst.
@@ -34,3 +63,22 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+// function checkEmailValidity(email) {
+//     const containsAtSymbol = email.includes('@');//Checken op een @ symbool
+//     const containsNoComma = !email.includes(',');//! dus geen comma's
+//     const doesNotEndWithDot = email[email.length - 1] !== '.';//Nooit eindigen met een punt
+//     return containsAtSymbol && containsNoComma && doesNotEndWithDot; //Alles true is ok.
+// }
+//weer als arrow. Niet echt leesbaarder... maar goed wel lekker kort.
+function checkEmailValidity(email) {
+    return email.includes('@') &&
+        !email.includes(',') &&
+        email[email.length - 1] !== '.';
+}
+//Effe snel testen
+console.log(checkEmailValidity("n.eeken@novi.nl"));
+console.log(checkEmailValidity("tessmellink@novi.nl"));
+console.log(checkEmailValidity("n.eekenanovi.nl"));
+console.log(checkEmailValidity("n.eeken@novinl."));
+console.log(checkEmailValidity("tessmellink@novi,nl"));

@@ -92,8 +92,6 @@ console.log("Gemiddelde eindcijfer:", averageGrade([8, 9, 4, 6, 10]));
 // Tip: Google is your best friend!
 
 
-
-
 /* Bonusopdracht: hoogste cijfer */
 
 /* 3a: Script schrijven  */
@@ -104,6 +102,16 @@ console.log("Gemiddelde eindcijfer:", averageGrade([8, 9, 4, 6, 10]));
 // Log het antwoord in de terminal.
 
 // ---- Verwachte uitkomst: 9
+function getHighestGrade(array) {
+    let highest = array[0]; // Begin bij het eerste cijfer.
+    for (let i = 1; i < array.length; i++) { //vergelijk alle cijfers, en indien het volgende cijfer hoger is overschrijf highest met het nieuwe cijfer
+        if (array[i] > highest) {
+            highest = array[i];
+        }
+    }
+    return highest;
+}
+console.log("Het hoogste eindcijfer is een: " + getHighestGrade(grades)); //
 
 
 /* 3b: Omschrijven tot een herbruikbare functie */
@@ -115,3 +123,5 @@ console.log("Gemiddelde eindcijfer:", averageGrade([8, 9, 4, 6, 10]));
 // highestGrade(grades) geeft 9
 // highestGrade([6, 4, 5]) geeft 6
 // highestGrade([8, 9, 4, 6, 10]) geeft 10
+console.log("Het hoogste eindcijfer is een: " + getHighestGrade([6, 4, 5]));
+console.log("Het hoogste eindcijfer is een: " + getHighestGrade([8, 9, 4, 6, 10]));
